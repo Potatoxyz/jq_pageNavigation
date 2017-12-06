@@ -223,25 +223,83 @@ $(function () {
     }
 
 
-    $('#upLoad').bind('change',function () {
-       console.log('upload');
-        $('#upLoad').ajaxfileupload({
-            action: 'http://localhost:8080/upload',
-            valid_extensions : ['md','csv'],
-            params: {
-                extra: 'info'
+    function onprogress(evt){
+        // var loaded = evt.loaded;     //已经上传大小情况
+        // var tot = evt.total;      //附件总大小
+        // var per = Math.floor(100*loaded/tot);  //已经上传的百分比
+        // $("#process").removeClass('none');
+        // $("#process").html( per +"%" );
+        // $("#process").css("width" , per +"%");
+
+        if (evt.lengthComputable) {
+            var percentComplete = e.loaded / e.total;
+            console.log('can eval!' )
+            // ...
+        } else {
+            // 不能计算进度
+            console.log('can not eval' )
+        }
+        // console.log(tot);
+    }
+
+    function uploadComplete(evt) {
+        $('#loading').addClass('none');
+    }
+
+    function uploadFailed(evt) {
+        alert("There was an error attempting to upload the file.");
+    }
+
+    function doUpload() {
+        var formData = new FormData($( "#uploadForm" )[0]);
+        $.ajax({
+            url: 'http://localhost:8080/upload' ,
+            type: 'POST',
+            data: formData,
+            async: false,
+            cache: false,
+
+            //必须false才会自动加上正确的Content-Type
+            contentType:false,
+
+            processData: false,
+            beforeSend:function (x) {
+                $('#loading').removeClass('none');
             },
-            onComplete: function(response) {
-                console.log('custom handler for file:');
-                alert(JSON.stringify(response));
+            xhr: function(){
+                var xhr = $.ajaxSettings.xhr();
+                // console.log(xhr.upload);
+                xhr.addEventListener("load", uploadComplete, false);
+                // xhr.addEventListener("error", uploadFailed, false);
+                xhr.upload.addEventListener("progress" , onprogress, false);
+
+               return xhr;
             },
-            onStart: function() {
-                console.log('start');
-            },
-            onCancel: function() {
-                console.log('no file selected');
+            success: function (returndata) {
+                console.log(returndata);
             }
         });
+    }
+    $('#upLoad').bind('change',function () {
+       console.log('已选择文件');
+        doUpload();
+            // $('#upLoad').ajaxfileupload({
+        //     action: 'http://localhost:8080/upload',
+        //     valid_extensions : ['md','csv'],
+        //     params: {
+        //         extra: 'info'
+        //     },
+        //     onComplete: function(response) {
+        //         console.log('custom handler for file:');
+        //         alert(JSON.stringify(response));
+        //     },
+        //     onStart: function() {
+        //         console.log('start');
+        //     },
+        //     onCancel: function() {
+        //         console.log('no file selected');
+        //     }
+        // });
     });
 
 
