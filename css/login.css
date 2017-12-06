@@ -1,0 +1,25 @@
+@import "publicStyle.css";
+.login-box{
+    width: 540px;
+    height:345px;
+    background: rgba(0,0,0,.5);
+    position: absolute;
+    left:50%;
+    margin-left: -270px;
+    top:50%;
+    margin-top: -172.5px;
+}
+small{
+    font-size: 0.8rem;
+    color: #4BA296;
+}
+form{
+    padding:32px;
+}
+form .form-group button{
+     width: 100%;
+ }
+form .form-group input,form .form-group input:focus{
+    background: rgba(0,0,0,.2);
+    color: white;
+}

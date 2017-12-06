@@ -1,0 +1,59 @@
+*{
+    margin:0;
+    padding: 0;
+}
+body{
+    min-height: 100vh;
+    overflow-y: auto;
+    background: url("../imgs/blur-bg-blurred.jpg") no-repeat;
+    background-size: cover;
+    color: white;
+}
+.input-error{
+    border-color: #ed7878;
+}
+.card{
+    background-color: rgba(255,255,255,.1);
+    border-radius: 5px;
+    border: 0;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.25);
+    padding:1.25rem;
+    position: relative;
+}
+.btn-default{
+    background-color:transparent;
+    border: 1px solid white;
+    color: white;
+    cursor: pointer;
+}
+.btn.customPd{
+    padding:0.35rem 1rem;
+}
+.btn-primary{
+    background: #4BA296;
+    border-color:#4BA296;
+}
+.btn-primary:hover{
+    background: #3d7f73;
+    border-color:#3d7f73 ;
+}
+.none{
+    display: none;
+}
+.fa.magL{
+    margin-left: 5px;
+}
+input{
+    background: rgba(0,0,0,.3);
+    padding:0 5px;
+    border: none;
+    border-radius: 3px;
+    height: 30px;
+    color:white;
+}
+input[type='checkbox']{
+    width: 18px;
+}
+.bg-black{
+    background: rgba(0,0,0,.3);
+}

@@ -1,0 +1,147 @@
+@import "publicStyle.css";
+.title{
+    padding: 13px 0 27px 0;
+}
+.search-part .group{
+    display: flex;
+    position: relative;
+    margin-bottom: 10px;
+}
+.search-part .group.bdb{
+    border-bottom: 1px solid white;
+}
+.search-part .toggle-select-wrap{
+    width: 80px;
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    margin-left: -40px;
+}
+.search-part .group .group-title{
+    width: 100px;
+    padding:3px;
+}
+.search-part .group .toggle-wrap{
+    position: absolute;
+    right: 0;
+    top:-5px;
+}
+.search-part .group .option-wrap{
+    width: calc(100% - 100px);
+    display: flex;
+    flex-wrap: wrap;
+}
+.search-part .group .option-wrap .option{
+    margin-right: 10px;
+    padding: 3px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+.search-part .group .option-wrap .option-selected{
+    background: white;
+    border-radius: 3px;
+    color: #003c8b;
+}
+#sub-select-wrap{
+    overflow: hidden;
+    animation: all .5s ease;
+}
+.mybtn{
+    height: 30px;
+    line-height: 15px;
+    vertical-align: top;
+}
+.customCd{
+    display: block!important;
+}
+.operate{
+    margin-top: 15px;
+}
+.operate .row{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.operate .row label{
+    margin-bottom: 0;
+}
+.operate .row .mL{
+    margin-right: 10px;
+}
+
+/*表格部分*/
+table.table{
+    font-size: 14px;
+}
+table.table th,table.table td{
+    text-align: center;
+    vertical-align: middle;
+}
+table td p,table th p{
+    margin-bottom: 0;
+    text-align: center;
+}
+.pagination{
+    justify-content: center;
+    margin-top: 15px;
+    position: relative;
+}
+.page-item.disabled .page-link,.pagination .page-link{
+    background: transparent;
+}
+.page-item.active .page-link{
+    border-color: white;
+    background-color: rgba(0,0,0,.3);
+}
+.page-item .page-link:hover{
+    background-color: rgba(0,0,0,.3);
+}
+.page-item .page-link{
+    color: white;
+}
+.page-item.disabled .page-link{
+    color: #cacaca;
+}
+.pageSize{
+    position: absolute;
+    left: 18px;
+    z-index: 1000;
+    width: 60px;
+    height: 27px;
+    background-color: rgba(0,0,0,.3);
+    color:white;
+    border:none;
+    border-radius: 2px;
+    padding-left: 5px;
+}
+.pageSize option{
+    background-color: #7d7d7d;
+}
+
+.modal-content{
+    background: url('../imgs/blur-bg-blurred.jpg');
+    background-size: cover;
+}
+.modal-body .select-wrap,.modal-body .select-wrap label{
+    display: flex;
+    align-items: center;
+}
+.modal-body .select-wrap label{
+    width: 20%;
+}
+.modal-body .select-wrap label input{
+    margin-right: 10px;
+}
+.modal-body .content textarea:focus{
+    background: rgba(0,0,0,.3);
+}
+.selectFile-wrap{
+    position: relative;
+}
+.modal-body .selectBtn{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 85px;
+    left: 0;
+}
