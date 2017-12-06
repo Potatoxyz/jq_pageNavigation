@@ -8,6 +8,22 @@
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/datepick-css/bootstrap-datepicker3.min.css">
 </head>
+<style>
+    .search-part .group .option-wrap label{
+             position: relative;
+             margin-right: 15px;
+             padding:3px;
+         }
+    .search-part .group .option-wrap .option{
+        position: absolute;
+        visibility: hidden;
+    }
+    .search-part .group .option-wrap .option-selected{
+        background: white;
+        border-radius: 3px;
+        color: #003c8b;
+    }
+</style>
 <body>
 <div class="container">
     <div class="row">
@@ -19,6 +35,7 @@
         <div class="col-12 card customCd">
             <div class="col-12 card">
                 <div class="search-part">
+                    <form action="#">
                     <div class="group bdb">
                         <div class="group-title">物流状态：</div>
                         <div class="option-wrap" iterator="status"></div>
@@ -47,6 +64,7 @@
                             </div>
                         </div>
                     </div>
+                    </form>
 
                     <div id="sub-search-wrap" class="none">
                         <div class="group">
@@ -117,7 +135,25 @@
                         <div class="modal-body">
                             <p>请下载提供的供应商信息导入模版，填写好后上传。</p>
                             <p><a href="">下载供应商信息模板</a></p>
-                            <a href="javascript:;" class="selectFile-wrap"><button class="btn btn-primary customPd mybtn selectBtn">选择文件</button><input type="file" class="inputfile"></a>
+                            <a href="javascript:;" class="selectFile-wrap"><button class="btn btn-primary customPd mybtn selectBtn">选择文件</button><input type="file" class="inputfile" id="upLoad"></a>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="LogitiscsModal">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">物流信息详情</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body" iterator="logistics">
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -173,6 +209,7 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/bootstrap-datepicker.min.js"></script>
 <script src="../js/jquery.twbsPagination.min.js"></script>
+<script src="../js/upload.js"></script>
 <script src="../js/index.js"></script>
 </body>
 </html>

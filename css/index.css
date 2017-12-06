@@ -31,17 +31,18 @@
     display: flex;
     flex-wrap: wrap;
 }
-.search-part .group .option-wrap .option{
-    margin-right: 10px;
-    padding: 3px;
-    margin-bottom: 5px;
-    cursor: pointer;
-}
-.search-part .group .option-wrap .option-selected{
-    background: white;
-    border-radius: 3px;
-    color: #003c8b;
-}
+
+/*.search-part .group .option-wrap .option{*/
+    /*margin-right: 10px;*/
+    /*padding: 3px;*/
+    /*margin-bottom: 5px;*/
+    /*cursor: pointer;*/
+/*}*/
+/*.search-part .group .option-wrap .option-selected{*/
+    /*background: white;*/
+    /*border-radius: 3px;*/
+    /*color: #003c8b;*/
+/*}*/
 #sub-select-wrap{
     overflow: hidden;
     animation: all .5s ease;

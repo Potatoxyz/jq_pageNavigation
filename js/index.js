@@ -5,6 +5,7 @@ $(function () {
     var Country=['所有','美国','澳大利亚','英国','法国','德国','意大利','日本','俄罗斯','其他'];
     var time=['全部','今天','昨天','7天内','30天以内','自定义'];
     var SearchType = ['订单号', '跟踪号', '包裹号'];
+    var Logitics = ['2017-08-05 11:45:00  妥投', '2017-08-05 04:02:00  到达投递局,美国', '2017-08-05 04:02:00 到达投递局,','2017-08-05 04:02:00  离开深圳市 发往芝加哥,深圳市','2017-08-05 04:02:00  离开深圳市 发往深圳邮政速递公司中快（香港）业务部,深圳市','2017-08-05 04:02:00  深圳市邮政速递物流公司国际业务分公司已收件（揽投员姓名：张小枫,联系电话:）,深圳市'];
     $('.datepicker').datepicker({
         autoclose: true,
         format:'yyyy/mm/dd'
@@ -17,29 +18,30 @@ $(function () {
         $('#importModal').modal();
     });
 
-    function loadData(target,attr) {
+    function loadData(target,attr,name) {
         for(var i=0;i<attr.length;i++){
-            $(target).append('<span class="option">'+attr[i]+'</span>');
-            $(target).children('span:eq(0)').addClass('option-selected');
+            $(target).append("<label><input class='option' type='radio' name="+name+">"+attr[i]+"</label>");
+            $(target).children('label:eq(0)').addClass('option-selected');
         }
     }
 
     var Status=$("*[iterator*='status']");
 
-    loadData(Status,logisticsStatus);
+    loadData(Status,logisticsStatus,'Status');
 
 
     var Way=$("*[iterator*='logisticsWay']");
 
-    loadData(Way,logisticsWay);
+    loadData(Way,logisticsWay,'Way');
+
 
     var receiveCountry=$("*[iterator*='receiveCountry']");
 
-    loadData(receiveCountry,Country);
+    loadData(receiveCountry,Country,'receiveCountry');
 
     var searchType = $("*[iterator*='searchType']");
 
-    loadData(searchType, SearchType);
+    loadData(searchType, SearchType,'searchType');
 
     var timeSelect=$("*[iterator*='timeSelect']");
 
@@ -67,7 +69,7 @@ $(function () {
     });
 
 
-    $("*[iterator]").children('span').bind('click',function () {
+    $("*[iterator]").children('label').bind('click',function () {
         $(this).addClass('option-selected');
         $(this).siblings().removeClass('option-selected');
     });
@@ -110,7 +112,7 @@ $(function () {
     //替换表格中的值
     function chageValue(data) {
         var trs=$('#tbody').children('tr');
-        // console.log('changeValue');
+        console.log('changeValue');
 //            console.log(trs[0].children[1].children[0]);
         for(var c=0;c<data.length;c++){
             trs[c].children[0].innerHTML='<input type="checkbox">';
@@ -164,7 +166,7 @@ $(function () {
                 var dataLength=items.length;
                 //dom数量过多，删除dom
                 if(items.length<pageSize&&firstClick!==1){
-//                    console.log('lessData');
+                   console.log('lessData');
                     var less=pageSize-items.length;
                     for(var les=1;les<less;les++){
                         $('#tbody').children('tr:nth-last-child('+les+'1)').remove();
@@ -173,24 +175,32 @@ $(function () {
                     // $('#tbody').children('tr:nth-last-child(2)').remove();
                     // console.log($('#tbody').children('tr').length);
                     chageValue(items);
+                    return;
                 }
                 //初始化添加dom
-                if(domNum==0){
+                if(domNum===0){
                     // console.log(domNum);
                     // console.log(dataLength);
                     for(var d=0;d<items.length;d++){
                         LoadTableData(items,d);
                     }
-                   // console.log('loadData');
+
+                    for(var lo=0;lo<dataLength;lo++){
+                        console.log($('tbody tr')[lo].children[6]);
+                        $('tbody tr')[lo].children[6].addEventListener('click',function () {
+                            console.log(1);
+                        })
+                    }
+                   console.log('loadData');
                 }
                 //pageSize未改变，dom数刚好相等，替换值
-                if(domNum==dataLength){
-                       // console.log('chagePage');
+                if(domNum===dataLength){
+                       console.log('chagePage');
                     chageValue(items);
                 }
                 //tr数量不够,添加dom
-                if(domNum<dataLength&&domNum!=0){
-                   // console.log('add');
+                if(domNum<dataLength&&domNum!==0){
+                   console.log('add');
 //                    console.log(dataLength);
 //                    console.log(domNum);
                     var lessNum=items.length-$('#tbody').children().length;
@@ -200,7 +210,7 @@ $(function () {
                     chageValue(items);
                 }
 
-                if(firstClick==1){
+                if(firstClick===1){
                     var totalPages = pageCount;
                     $pagination.twbsPagination('destroy');
                     $pagination.twbsPagination($.extend({}, defaultOpts, {
@@ -208,9 +218,45 @@ $(function () {
                     }));
                 }
                 firstClick++;
+                console.log(firstClick);
             });
     }
 
+
+    $('#upLoad').bind('change',function () {
+       console.log('upload');
+        $('#upLoad').ajaxfileupload({
+            action: 'http://localhost:8080/upload',
+            valid_extensions : ['md','csv'],
+            params: {
+                extra: 'info'
+            },
+            onComplete: function(response) {
+                console.log('custom handler for file:');
+                alert(JSON.stringify(response));
+            },
+            onStart: function() {
+                console.log('start');
+            },
+            onCancel: function() {
+                console.log('no file selected');
+            }
+        });
+    });
+
+
+    //物流弹窗部分
+    var logistics=$("*[iterator*='logistics']");
+    // function openLogicticsModal() {
+    //     $('#LogitiscsModal').modal();
+    //     loadLogiticsData(logistics,Logitics);
+    // }
+    //
+    // function loadLogiticsData(target,attr) {
+    //     for(var i=0;i<attr.length;i++){
+    //         $(target).append('<p>'+attr[i]+'</p>');
+    //     }
+    // }
 
 //        selectThisPage
     $('#selectThisPage').bind('click',function () {
