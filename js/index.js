@@ -11,11 +11,17 @@ $(function () {
         format:'yyyy/mm/dd'
     });
 
+    //双击批量查询弹窗
     $('#searchType').bind('dblclick',function () {
        $('#searchModal').modal();
     });
+    //打开导入物流弹窗
     $('#import').bind('click',function () {
-        $('#importModal').modal();
+        $('#importModal').modal({keyboard: false});
+    });
+    //弹窗关闭之后隐藏  check图标
+    $('#closeImportModal').bind('click',function () {
+        $('#success').addClass('none');
     });
 
     function loadData(target,attr,name) {
@@ -106,6 +112,8 @@ $(function () {
     }
     function appendData(target,data,index) {
         $(target).append('<td>'+'<p>'+data[index].packageNum+'</p>'+'<p>'+data[index].TraceNum+'</p>'+'</td>' + '<td>'+data[index].LogisticsWay+'</td>' + '<td>'+data[index].DeliverTime+'</td>' + '<td>'+data[index].OnlineTime+'</td>' + '<td>'+data[index].GetTime+'</td>' + '<td>'+data[index].NewInfo+'</td>' + '<td>'+data[index].packageStatu+'</td>');
+
+        $(target).children('td:eq(6)').bind('click',index,openLogicticsModal);
         return target;
     }
 
@@ -184,13 +192,6 @@ $(function () {
                     for(var d=0;d<items.length;d++){
                         LoadTableData(items,d);
                     }
-
-                    for(var lo=0;lo<dataLength;lo++){
-                        console.log($('tbody tr')[lo].children[6]);
-                        $('tbody tr')[lo].children[6].addEventListener('click',function () {
-                            console.log(1);
-                        })
-                    }
                    console.log('loadData');
                 }
                 //pageSize未改变，dom数刚好相等，替换值
@@ -241,9 +242,10 @@ $(function () {
         }
         // console.log(tot);
     }
-
+    //上传结束
     function uploadComplete(evt) {
         $('#loading').addClass('none');
+        $('#success').removeClass('none');
     }
 
     function uploadFailed(evt) {
@@ -283,38 +285,22 @@ $(function () {
     $('#upLoad').bind('change',function () {
        console.log('已选择文件');
         doUpload();
-            // $('#upLoad').ajaxfileupload({
-        //     action: 'http://localhost:8080/upload',
-        //     valid_extensions : ['md','csv'],
-        //     params: {
-        //         extra: 'info'
-        //     },
-        //     onComplete: function(response) {
-        //         console.log('custom handler for file:');
-        //         alert(JSON.stringify(response));
-        //     },
-        //     onStart: function() {
-        //         console.log('start');
-        //     },
-        //     onCancel: function() {
-        //         console.log('no file selected');
-        //     }
-        // });
     });
 
 
     //物流弹窗部分
     var logistics=$("*[iterator*='logistics']");
-    // function openLogicticsModal() {
-    //     $('#LogitiscsModal').modal();
-    //     loadLogiticsData(logistics,Logitics);
-    // }
-    //
-    // function loadLogiticsData(target,attr) {
-    //     for(var i=0;i<attr.length;i++){
-    //         $(target).append('<p>'+attr[i]+'</p>');
-    //     }
-    // }
+    function openLogicticsModal(event) {
+        $('#LogitiscsModal').modal();
+        console.log(event.data);
+        loadLogiticsData(logistics,Logitics);
+    }
+
+    function loadLogiticsData(target,attr) {
+        for(var i=0;i<attr.length;i++){
+            $(target).append('<p>'+attr[i]+'</p>');
+        }
+    }
 
 //        selectThisPage
     $('#selectThisPage').bind('click',function () {

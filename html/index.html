@@ -26,7 +26,7 @@
     #uploadForm{
         display: flex;
     }
-    .loading{
+    .mR{
         margin-left: 15px;
     }
 </style>
@@ -141,16 +141,17 @@
                         <div class="modal-body">
                             <p>请下载提供的物流信息导入模版，填写好后上传。</p>
                             <p><a href="">下载供应商信息模板</a></p>
-                            <form id= "uploadForm">
+                            <form id="uploadForm">
                                 <a href="javascript:;" class="selectFile-wrap">
                                     <button class="btn btn-primary customPd mybtn selectBtn">选择文件</button>
                                     <input type="file" class="inputfile"  name="inputfile" id="upLoad">
                                 </a>
-                                <div class="loading none" id="loading"><i class="fa fa-spinner fa-spin fa-2x"></i></div>
+                                <div class="mR none" id="loading"><i class="fa fa-spinner fa-spin fa-2x"></i></div>
+                                <div class="mR none" id="success"><i class="fa fa fa-check fa-2x text-success"></i></div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="closeImportModal">关闭</button>
                             <button type="button" class="btn btn-primary">确定</button>
                         </div>
                     </div>
