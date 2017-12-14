@@ -5,30 +5,12 @@
     <title>物流跟踪</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/selectPart.css">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/datepick-css/bootstrap-datepicker3.min.css">
 </head>
 <style>
-    .search-part .group .option-wrap label{
-             position: relative;
-             margin-right: 15px;
-             padding:3px;
-         }
-    .search-part .group .option-wrap .option{
-        position: absolute;
-        visibility: hidden;
-    }
-    .search-part .group .option-wrap .option-selected{
-        background: white;
-        border-radius: 3px;
-        color: #003c8b;
-    }
-    #uploadForm{
-        display: flex;
-    }
-    .mR{
-        margin-left: 15px;
-    }
+
 </style>
 <body>
 <div class="container">
@@ -148,6 +130,7 @@
                                 </a>
                                 <div class="mR none" id="loading"><i class="fa fa-spinner fa-spin fa-2x"></i></div>
                                 <div class="mR none" id="success"><i class="fa fa fa-check fa-2x text-success"></i></div>
+                                <div class="mR none" id="error"><i class="fa fa fa-exclamation-circle  fa-2x text-danger"></i></div>
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -176,14 +159,20 @@
                 </div>
             </div>
 
-            <div>
+            <div class="pagenation-wrap">
                 <select class="pageSize">
                     <option value="1">1</option>
                     <option value="5" selected>5</option>
                     <option value="10">10</option>
                     <option value="20">20</option>
                 </select>
+                <div class="totalCount">总共<span class="dataNum"></span>条数据</div>
                 <ul class="sync-pagination pagination-sm"></ul>
+                <ul class="pagenation-wrap pageto-wrap">
+                    <li class="pageto">跳至</li>
+                    <li><input type="text" class="pageto-input"></li>
+                    <li><button class="btn btn-primary customPd pageto-button">确定</button></li>
+                </ul>
             </div>
             <table class="table table-hover table-bordered">
                 <thead>
@@ -206,14 +195,20 @@
                 <tbody id="tbody">
                 </tbody>
             </table>
-            <div>
+            <div class="pagenation-wrap">
                 <select class="pageSize">
                     <option value="1">1</option>
                     <option value="5" selected>5</option>
                     <option value="10">10</option>
                     <option value="20">20</option>
                 </select>
+                <div class="totalCount">总共<span class="dataNum"></span>条数据</div>
                 <ul class="sync-pagination pagination-sm"></ul>
+                <ul class="pagenation-wrap pageto-wrap">
+                    <li class="pageto">跳至</li>
+                    <li><input type="text" class="pageto-input"></li>
+                    <li><button class="btn btn-primary customPd pageto-button">确定</button></li>
+                </ul>
             </div>
         </div>
     </div>

@@ -57,3 +57,8 @@ input[type='checkbox']{
 .bg-black{
     background: rgba(0,0,0,.3);
 }
+@media (min-width: 1200px){
+    .container{
+        width:1440px;
+    }
+}

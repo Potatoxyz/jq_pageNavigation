@@ -21,12 +21,15 @@ $(function () {
     });
     //弹窗关闭之后隐藏  check图标
     $('#closeImportModal').bind('click',function () {
+        $('#upLoad').val('');
         $('#success').addClass('none');
+        $('#error').addClass('none');
+        $('#loading').addClass('none');
     });
 
     function loadData(target,attr,name) {
         for(var i=0;i<attr.length;i++){
-            $(target).append("<label><input class='option' type='radio' name="+name+">"+attr[i]+"</label>");
+            $(target).append("<label><input class='option' type='radio' name="+name+">"+attr[i]+"<span class='badge'>40</span></label>");
             $(target).children('label:eq(0)').addClass('option-selected');
         }
     }
@@ -56,7 +59,7 @@ $(function () {
     var datepart=$('#date').detach();
     $(timeSelect).append(datepart);
 
-
+    //筛选和搜索的切换按钮
     $('#select').click(function () {
         $(this).removeClass('btn-default').addClass('btn-primary');
         $(this).siblings().addClass('btn-default').removeClass('btn-primary');
@@ -74,12 +77,13 @@ $(function () {
         $('.toggle-select-wrap').addClass('none');
     });
 
-
+    //选项点击样式切换
     $("*[iterator]").children('label').bind('click',function () {
         $(this).addClass('option-selected');
         $(this).siblings().removeClass('option-selected');
     });
 
+    //点击自定义时间
     $(timeSelect).children('span').click(function () {
         $('#date').addClass('none');
     });
@@ -87,6 +91,7 @@ $(function () {
         $('#date').removeClass('none');
     });
 
+    //展开的收起和下拉
     var subSelectWrap=$('#sub-select-wrap');
     var currentHeight=$(subSelectWrap).height();
     $(subSelectWrap).height('0');
@@ -172,6 +177,15 @@ $(function () {
                 // console.log(items);
                 var domNum=$('#tbody').children().length;
                 var dataLength=items.length;
+                $(".totalCount .dataNum").text(dataLength);
+                $(".loading-container").removeClass("none");
+                if(data.isSuccess)
+                    $(".loading-container").addClass("none");
+                else {
+                    setTimeout(function () {
+                        $(".loading-container").addClass("none");
+                    },2000)
+                }
                 //dom数量过多，删除dom
                 if(items.length<pageSize&&firstClick!==1){
                    console.log('lessData');
@@ -211,7 +225,7 @@ $(function () {
                     chageValue(items);
                 }
 
-                if(firstClick===1){
+                if(domNum!==0){
                     var totalPages = pageCount;
                     $pagination.twbsPagination('destroy');
                     $pagination.twbsPagination($.extend({}, defaultOpts, {
@@ -219,7 +233,9 @@ $(function () {
                     }));
                 }
                 firstClick++;
-                console.log(firstClick);
+
+                $('.sync-pagination').append('<div>')
+
             });
     }
 
@@ -265,7 +281,7 @@ $(function () {
             contentType:false,
 
             processData: false,
-            beforeSend:function (x) {
+            beforeSend:function () {
                 $('#loading').removeClass('none');
             },
             xhr: function(){
@@ -279,6 +295,10 @@ $(function () {
             },
             success: function (returndata) {
                 console.log(returndata);
+            },
+            error:function () {
+                $('#error').removeClass('none');
+                $('#loading').addClass('none');
             }
         });
     }
@@ -293,12 +313,23 @@ $(function () {
     function openLogicticsModal(event) {
         $('#LogitiscsModal').modal();
         console.log(event.data);
-        loadLogiticsData(logistics,Logitics);
+        ////url:/ShippingTracking/TrackingEvents?trackingOrderId=
+        $.getJSON('http://localhost:51114/ShippingTracking/TrackingEvents',{trackingOrderId:2},
+        function (data) {
+            console.log(data);
+            var resultLogitics=data.result;
+            loadLogiticsData(logistics,resultLogitics);
+        }
+        );
+        // loadLogiticsData(logistics,Logitics);
     }
 
     function loadLogiticsData(target,attr) {
+        // for(var i=0;i<attr.length;i++){
+        //     $(target).append('<p>'+attr[i]+'</p>');
+        // }
         for(var i=0;i<attr.length;i++){
-            $(target).append('<p>'+attr[i]+'</p>');
+            $(target).append('<p>'+attr[i].time+'&nbsp;&nbsp;'+attr[i].description+'</p>');
         }
     }
 

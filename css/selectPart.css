@@ -1,0 +1,77 @@
+.title{
+    padding: 13px 0 27px 0;
+}
+.search-partWrap{
+    margin-bottom: 50px;
+}
+.search-part .group{
+    display: flex;
+    position: relative;
+    margin-bottom: 10px;
+}
+.search-part .group.bdb{
+    border-bottom: 1px solid white;
+}
+.search-part .toggle-select-wrap{
+    width: 80px;
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    margin-left: -40px;
+}
+.search-part .group .group-title{
+    width: 100px;
+    padding:3px;
+}
+.search-part .group .toggle-wrap{
+    position: absolute;
+    right: 0;
+    top:-5px;
+}
+.search-part .group .option-wrap{
+    width: calc(100% - 100px);
+    display: flex;
+    flex-wrap: wrap;
+}
+#sub-select-wrap{
+    overflow: hidden;
+    animation: all .5s ease;
+}
+.mybtn{
+    height: 30px;
+    line-height: 15px;
+    vertical-align: top;
+}
+.customCd{
+    display: block!important;
+}
+.operate{
+    margin-top: 15px;
+}
+.operate .row{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.operate .row label{
+    margin-bottom: 0;
+}
+.operate .row .mL{
+    margin-right: 10px;
+}
+
+
+.search-part .group .option-wrap label{
+    position: relative;
+    margin-right: 15px;
+    padding:3px;
+}
+.search-part .group .option-wrap .option{
+    position: absolute;
+    visibility: hidden;
+}
+.search-part .group .option-wrap .option-selected{
+    background: white;
+    border-radius: 3px;
+    color: #003c8b;
+}

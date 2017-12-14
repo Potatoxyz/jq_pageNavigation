@@ -1,75 +1,4 @@
 @import "publicStyle.css";
-.title{
-    padding: 13px 0 27px 0;
-}
-.search-part .group{
-    display: flex;
-    position: relative;
-    margin-bottom: 10px;
-}
-.search-part .group.bdb{
-    border-bottom: 1px solid white;
-}
-.search-part .toggle-select-wrap{
-    width: 80px;
-    position: absolute;
-    bottom: -15px;
-    left: 50%;
-    margin-left: -40px;
-}
-.search-part .group .group-title{
-    width: 100px;
-    padding:3px;
-}
-.search-part .group .toggle-wrap{
-    position: absolute;
-    right: 0;
-    top:-5px;
-}
-.search-part .group .option-wrap{
-    width: calc(100% - 100px);
-    display: flex;
-    flex-wrap: wrap;
-}
-
-/*.search-part .group .option-wrap .option{*/
-    /*margin-right: 10px;*/
-    /*padding: 3px;*/
-    /*margin-bottom: 5px;*/
-    /*cursor: pointer;*/
-/*}*/
-/*.search-part .group .option-wrap .option-selected{*/
-    /*background: white;*/
-    /*border-radius: 3px;*/
-    /*color: #003c8b;*/
-/*}*/
-#sub-select-wrap{
-    overflow: hidden;
-    animation: all .5s ease;
-}
-.mybtn{
-    height: 30px;
-    line-height: 15px;
-    vertical-align: top;
-}
-.customCd{
-    display: block!important;
-}
-.operate{
-    margin-top: 15px;
-}
-.operate .row{
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-.operate .row label{
-    margin-bottom: 0;
-}
-.operate .row .mL{
-    margin-right: 10px;
-}
-
 /*表格部分*/
 table.table{
     font-size: 14px;
@@ -115,6 +44,27 @@ table td p,table th p{
     border-radius: 2px;
     padding-left: 5px;
 }
+.totalCount {
+    position: absolute;
+    left: 78px;
+    z-index: 10;
+    height: 27px;
+    border-left: 1px solid rgba(255,255,255,.3);
+    color: white;
+    font-size: 14px;
+    line-height: 27px;
+    background-color: rgba(0,0,0,.3);
+    padding: 0 8px;
+    border-radius: 0 3px 3px 0;
+}
+.totalCount span.dataNum{
+    display:inline-block;
+    width:40px;
+    text-align:center;
+}
+.pageSize option {
+    background-color: #7d7d7d;
+}
 .pageSize option{
     background-color: #7d7d7d;
 }
@@ -145,4 +95,47 @@ table td p,table th p{
     justify-content: center;
     width: 85px;
     left: 0;
+}
+
+#uploadForm{
+    display: flex;
+}
+.mR{
+    margin-left: 15px;
+}
+.badge{
+    color:red;
+    background-color: white;
+    margin-left: 5px;
+}
+.pagenation-wrap{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+ul.pagenation-wrap{
+    list-style: none;
+    margin-bottom: 0;
+}
+.pageto-wrap li{
+    height: 27px;
+    width: 50px;
+}
+.pageto{
+    height: 27px;
+    border: 1px solid white;
+    position: relative;
+    top: -1px;
+    width: 46px;
+    text-align: center;
+}
+.pageto-input{
+    width: 50px;
+    height: 27px;
+}
+.pageto-button{
+    height: 27px;
+    line-height: 16px;
+    width: 50px;
+    padding: 0!important;
 }

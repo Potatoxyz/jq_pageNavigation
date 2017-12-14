@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>统计</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/publicStyle.css">
+    <link rel="stylesheet" href="../css/selectPart.css">
+    <link rel="stylesheet" href="../css/statistics.css">
+    <link rel="stylesheet" href="../css/datepick-css/bootstrap-datepicker3.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-12 title">
+            <h3>物流跟踪</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 card customCd">
+            <div class="col-12 card search-partWrap">
+                <div class="search-part">
+                    <form action="#">
+                        <div class="group bdb">
+                            <div class="group-title">物流状态：</div>
+                            <div class="option-wrap" iterator="status"></div>
+                        </div>
+                        <div id="sub-select-wrap">
+                            <div class="group">
+                                <div class="group-title">物流方式：</div>
+                                <div class="option-wrap" iterator="logisticsWay"></div>
+                            </div>
+                            <div class="group">
+                                <div class="group-title">收件国家：</div>
+                                <div class="option-wrap" iterator="receiveCountry"></div>
+                            </div>
+                            <div class="group">
+                                <div class="group-title">时段筛选：</div>
+                                <div class="option-wrap" iterator="timeSelect">
+                                    <div id="date" class="none">
+                                        <input data-provide="datepicker" class="datepicker">&nbsp;-&nbsp;<input data-provide="datepicker" class="datepicker"><button class="btn btn-primary customPd mybtn">确定</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="toggle-select-wrap">
+                        <button class="btn btn-primary customPd">展开<i class="fa fa-caret-down magL"></i></button>
+                        <button class="btn btn-primary none customPd">收起<i class="fa fa-caret-up magL"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div id="container" style="min-width:400px;height:400px"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/highcharts.js"></script>
+<script src="../js/statistics.js"></script>
+</body>
+</html>
