@@ -190,8 +190,8 @@ $(function () {
                 if(items.length<pageSize&&firstClick!==1){
                    console.log('lessData');
                     var less=pageSize-items.length;
-                    for(var les=1;les<less;les++){
-                        $('#tbody').children('tr:nth-last-child('+les+'1)').remove();
+                    for(var les=1;les<=less;les++){
+                        $('#tbody').children('tr:nth-last-child(1)').remove();
                     }
                     // $('#tbody').children('tr:nth-last-child(1)').remove();
                     // $('#tbody').children('tr:nth-last-child(2)').remove();
